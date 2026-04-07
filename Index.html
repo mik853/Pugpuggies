@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUGPUGGIES - Cutest Pigs on the Blockchain! 🐷</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Chewy&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #FFB3D9;
+            --hot-pink: #FF69B4;
+            --mud-brown: #8B6F47;
+            --dark-brown: #654321;
+            --sky-blue: #87CEEB;
+            --cloud-white: #FFF8F0;
+            --grass-green: #90C878;
+            --sun-yellow: #FFD700;
+            --wood: #D2691E;
+        }
+
+        body {
+            font-family: 'Baloo 2', cursive;
+            background: linear-gradient(to bottom, var(--sky-blue) 0%, #B8E6F5 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating clouds background */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 100px;
+            opacity: 0.8;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 10%;
+            left: 10%;
+            animation: float1 25s infinite ease-in-out;
+        }
+
+        .cloud1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+
+        .cloud2 {
+            width: 120px;
+            height: 50px;
+            top: 20%;
+            right: 15%;
+            animation: float2 30s infinite ease-in-out;
+        }
+
+        .cloud2::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 15px;
+        }
+
+        .cloud2::after {
+            width: 70px;
+            height: 50px;
+            top: -20px;
+            right: 15px;
+        }
+
+        .cloud3 {
+            width: 90px;
+            height: 35px;
+            top: 40%;
+            left: 70%;
+            animation: float1 20s infinite ease-in-out;
+        }
+
+        .cloud3::before {
+            width: 45px;
+            height: 45px;
+            top: -20px;
+            left: 8px;
+        }
+
+        .cloud3::after {
+            width: 55px;
+            height: 35px;
+            top: -10px;
+            right: 8px;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(50px) translateY(-20px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-50px) translateY(20px); }
+        }
+
+        /* Landing Page */
+        #landing-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .sunflower {
+            position: absolute;
+            font-size: 4rem;
+            animation: spin 20s linear infinite;
+        }
+
+        .sunflower.left {
+            top: 15%;
+            left: 10%;
+            animation-delay: -5s;
+        }
+
+        .sunflower.right {
+            top: 20%;
+            right: 10%;
+            animation-delay: -10s;
+        }
+
+        .sunflower.bottom {
+            bottom: 15%;
+            left: 15%;
+            animation-delay: -15s;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-container {
+            text-align: center;
+            animation: slideInDown 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .logo-text {
+            font-family: 'Chewy', cursive;
+            font-size: 6rem;
+            color: var(--pink);
+            text-shadow: 
+                5px 5px 0 var(--hot-pink),
+                10px 10px 0 var(--mud-brown),
+                15px 15px 30px rgba(0, 0, 0, 0.3);
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            animation: wobble 3s ease-in-out infinite;
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .tagline {
+            font-family: 'Covered By Your Grace', cursive;
+            font-size: 2rem;
+            color: var(--wood);
+            margin-bottom: 40px;
+        }
+
+        .pig-pile {
+            width: 400px;
+            max-width: 90vw;
+            height: auto;
+            margin: 30px 0;
+            filter: drop-shadow(0 20px 40px rgba(139, 111, 71, 0.4));
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .enter-btn {
+            font-family: 'Chewy', cursive;
+            font-size: 2.5rem;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, var(--pink) 0%, var(--hot-pink) 100%);
+            color: white;
+            border: 5px solid var(--mud-brown);
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 
+                0 10px 0 var(--dark-brown),
+                0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 0 var(--dark-brown),
+                0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .enter-btn:active {
+            transform: translateY(5px);
+            box-shadow: 
+                0 5px 0 var(--dark-brown),
+                0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--mud-brown);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #loading-screen.active {
+            display: flex;
+        }
+
+        .mud-puddle {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--dark-brown) 0%, var(--mud-brown) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                inset 0 -20px 40px rgba(0, 0, 0, 0.5),
+                0 30px 60px rgba(0, 0, 0, 0.5);
+            animation: splashPuddle 2s ease-in-out infinite;
+        }
+
+        @keyframes splashPuddle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .loading-pig {
+            font-size: 5rem;
+            animation: roll 2s linear infinite;
+        }
+
+        @keyframes roll {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Chewy', cursive;
+            font-size: 3rem;
+            color: var(--cloud-white);
+            margin-top: 30px;
+            letter-spacing: 5px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.95); }
+        }
+
+        /* Main Content */
+        #main-content {
+            display: none;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #main-content.active {
+            display: block;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .main-title {
+            font-family: 'Chewy', cursive;
+            font-size: 5rem;
+            color: var(--pink);
+            text-shadow: 
+                4px 4px 0 var(--hot-pink),
+                8px 8px 0 var(--mud-brown),
+                12px 12px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-family: 'Covered By Your Grace', cursive;
+            font-size: 2rem;
+            color: var(--dark-brown);
+        }
+
+        /* Wood plank sections */
+        .section {
+            background: linear-gradient(135deg, #DEB887 0%, var(--wood) 100%);
+            border-radius: 30px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 20px 50px rgba(101, 67, 33, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 5px solid var(--dark-brown);
+            animation: slideUp 0.8s ease-out backwards;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 45px,
+                rgba(0, 0, 0, 0.05) 45px,
+                rgba(0, 0, 0, 0.05) 50px
+            );
+            pointer-events: none;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px) rotate(-2deg); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotate(0deg); 
+            }
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 1;
+            background: var(--cloud-white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-family: 'Chewy', cursive;
+            font-size: 2.5rem;
+            color: var(--hot-pink);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 2px 2px 0 rgba(255, 182, 217, 0.5);
+        }
+
+        .emoji {
+            font-size: 3rem;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .label {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+            font-family: 'Baloo 2', cursive;
+        }
+
+        .input {
+            width: 100%;
+            padding: 18px 25px;
+            font-size: 1.1rem;
+            font-family: 'Baloo 2', cursive;
+            border: 4px solid var(--pink);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--hot-pink);
+            box-shadow: 
+                inset 0 2px 5px rgba(0, 0, 0, 0.1),
+                0 0 0 4px rgba(255, 105, 180, 0.2);
+            transform: scale(1.02);
+        }
+
+        .helper-text {
+            font-size: 1rem;
+            color: #8B6F47;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .button {
+            padding: 18px 45px;
+            font-family: 'Chewy', cursive;
+            font-size: 1.4rem;
+            color: white;
+            background: linear-gradient(135deg, var(--pink) 0%, var(--hot-pink) 100%);
+            border: 4px solid var(--mud-brown);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                0 6px 0 var(--dark-brown),
+                0 10px 25px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 9px 0 var(--dark-brown),
+                0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .button:active {
+            transform: translateY(3px);
+            box-shadow: 
+                0 3px 0 var(--dark-brown),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .button.secondary {
+            background: linear-gradient(135deg, var(--grass-green) 0%, #7CB342 100%);
+        }
+
+        .button.verify {
+            background: linear-gradient(135deg, var(--sun-yellow) 0%, #FFA500 100%);
+        }
+
+        .note-box {
+            background: #FFE8B3;
+            border: 3px dashed var(--wood);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-box strong {
+            color: var(--dark-brown);
+        }
+
+        /* Success Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 111, 71, 0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            background: var(--cloud-white);
+            padding: 60px 80px;
+            border-radius: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                inset 0 -5px 0 rgba(255, 182, 217, 0.3);
+            border: 8px solid var(--pink);
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0) rotate(-180deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .success-pig {
+            font-size: 6rem;
+            animation: celebrate 1s ease-in-out infinite;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .success-title {
+            font-family: 'Chewy', cursive;
+            font-size: 3rem;
+            color: var(--hot-pink);
+            margin: 20px 0 15px;
+            text-shadow: 3px 3px 0 rgba(255, 182, 217, 0.5);
+        }
+
+        .success-message {
+            font-size: 1.5rem;
+            color: var(--dark-brown);
+            font-weight: 600;
+        }
+
+        .confetti {
+            position: absolute;
+            font-size: 2rem;
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .close-modal {
+            margin-top: 30px;
+            background: linear-gradient(135deg, var(--mud-brown) 0%, var(--dark-brown) 100%);
+        }
+
+        /* Mud splat decorations */
+        .mud-splat {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, var(--mud-brown) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .splat1 {
+            top: -20px;
+            right: 50px;
+            animation: drip 3s ease-in-out infinite;
+        }
+
+        .splat2 {
+            bottom: -15px;
+            left: 60px;
+            animation: drip 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes drip {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-text { font-size: 3.5rem; }
+            .main-title { font-size: 3rem; }
+            .tagline { font-size: 1.5rem; }
+            .subtitle { font-size: 1.5rem; }
+            .enter-btn { 
+                font-size: 1.8rem; 
+                padding: 15px 40px;
+            }
+            .pig-pile { width: 280px; }
+            .section { padding: 25px; }
+            .section-content { padding: 20px; }
+            .section-title { font-size: 1.8rem; }
+            .modal-content { padding: 40px 30px; }
+            .loading-text { font-size: 2rem; }
+            .sunflower { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating clouds -->
+    <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+    </div>
+
+    <!-- Landing Page -->
+    <div id="landing-page">
+        <div class="sunflower left">🌻</div>
+        <div class="sunflower right">🌻</div>
+        <div class="sunflower bottom">🌻</div>
+
+        <div class="hero-container">
+            <h1 class="logo-text">PUGPUGGIES</h1>
+            <p class="tagline">The Cutest Pigs on the Blockchain! 🐷💕</p>
+            <img src="pugpuggies-hero.jpg" alt="Pugpuggies Pile" class="pig-pile">
+            <button class="enter-btn" onclick="enterSite()">🐽 Enter the Pen 🐽</button>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="mud-puddle">
+            <div class="loading-pig">🐷</div>
+        </div>
+        <div class="loading-text">Rolling in...</div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="container">
+            <div class="header">
+                <h1 class="main-title">PUGPUGGIES</h1>
+                <p class="subtitle">Join the Muddiest Community in Web3! 🐷✨</p>
+            </div>
+
+            <!-- Section 1: Follow on Twitter -->
+            <div class="section">
+                <div class="mud-splat splat1"></div>
+                <div class="section-content">
+                    <h2 class="section-title">
+                        <span class="emoji">🐦</span>
+                        Follow Us on Twitter
+                    </h2>
+                    <div class="input-group">
+                        <label class="label">Your Twitter Handle</label>
+                        <input type="text" id="twitter-handle" class="input" placeholder="@yourhandle">
+                        <p class="helper-text">Enter your Twitter username (with or without @)</p>
+                    </div>
+                    <button class="button" onclick="followTwitter()">Follow & Oink! 🐷</button>
+                </div>
+            </div>
+
+            <!-- Section 2: Like & Retweet -->
+            <div class="section">
+                <div class="mud-splat splat2"></div>
+                <div class="section-content">
+                    <h2 class="section-title">
+                        <span class="emoji">🔄</span>
+                        Like & Retweet Our Pinned Post
+                    </h2>
+                    <div class="input-group">
+                        <label class="label">Your Retweet/Comment Link</label>
+                        <input type="text" id="retweet-link" class="input" placeholder="https://twitter.com/...">
+                        <p class="helper-text">Paste the link to your retweet or comment</p>
+                    </div>
+                    <div class="button-group">
+                        <button class="button secondary" onclick="viewPinnedPost()">View Pinned Post 👀</button>
+                        <button class="button verify" onclick="verifyTweet()">Verify Tweet ✅</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Wallet Collection -->
+            <div class="section">
+                <div class="mud-splat splat1"></div>
+                <div class="section-content">
+                    <h2 class="section-title">
+                        <span class="emoji">💰</span>
+                        Submit Your Wallet Address
+                    </h2>
+                    <div class="input-group">
+                        <label class="label">Wallet Address</label>
+                        <input type="text" id="wallet-address" class="input" placeholder="0x...">
+                        <p class="helper-text">Enter your Ethereum wallet address</p>
+                    </div>
+                    <div class="note-box">
+                        <strong>🐷 Important:</strong> Make sure you've completed the Twitter tasks above before submitting your wallet! We want all our piggies in the pen!
+                    </div>
+                    <button class="button" onclick="submitWallet()" style="margin-top: 20px; width: 100%;">
+                        Submit & Join the Herd! 🐽
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="success-pig">🐷🎉</div>
+            <h2 class="success-title">Welcome to the Herd!</h2>
+            <p class="success-message">You're now officially a Pugpuggie! Oink oink! 🐽💕</p>
+            <button class="button close-modal" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ===========================================
+        // CONFIGURATION - EDIT THESE VALUES
+        // ===========================================
+        const CONFIG = {
+            // Replace with your Twitter handle (without @)
+            TWITTER_HANDLE: 'YourTwitterHandle',
+            
+            // Replace with your pinned tweet URL
+            PINNED_TWEET_URL: 'https://twitter.com/YourTwitterHandle/status/1234567890',
+            
+            // Replace with your Google Sheets Web App URL
+            GOOGLE_SHEET_URL: 'YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE'
+        };
+        // ===========================================
+
+        function enterSite() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('loading-screen').classList.add('active');
+            
+            setTimeout(() => {
+                document.getElementById('loading-screen').classList.remove('active');
+                document.getElementById('main-content').classList.add('active');
+            }, 2000);
+        }
+
+        function followTwitter() {
+            const handle = document.getElementById('twitter-handle').value.trim();
+            if (!handle) {
+                alert('🐷 Oink! Please enter your Twitter handle first!');
+                return;
+            }
+            window.open(`https://twitter.com/${CONFIG.TWITTER_HANDLE}`, '_blank');
+        }
+
+        function viewPinnedPost() {
+            window.open(CONFIG.PINNED_TWEET_URL, '_blank');
+        }
+
+        function verifyTweet() {
+            const retweetLink = document.getElementById('retweet-link').value.trim();
+            if (!retweetLink) {
+                alert('🐷 Oink oink! Please paste your retweet/comment link!');
+                return;
+            }
+            
+            if (!retweetLink.includes('twitter.com') && !retweetLink.includes('x.com')) {
+                alert('🐷 That doesn\'t look like a Twitter link! Please check and try again.');
+                return;
+            }
+            
+            alert('✅ Oink oink! Tweet verified! You can now submit your wallet below. 🐽');
+        }
+
+        async function submitWallet() {
+            const walletAddress = document.getElementById('wallet-address').value.trim();
+            const twitterHandle = document.getElementById('twitter-handle').value.trim();
+            const retweetLink = document.getElementById('retweet-link').value.trim();
+            
+            // Validation
+            if (!walletAddress) {
+                alert('🐷 Oink! Please enter your wallet address!');
+                return;
+            }
+            
+            if (!walletAddress.startsWith('0x') || walletAddress.length !== 42) {
+                alert('🐷 That doesn\'t look like a valid Ethereum wallet address! Please check and try again.');
+                return;
+            }
+            
+            if (!twitterHandle) {
+                alert('🐷 Oink oink! Please complete the Twitter tasks first!');
+                return;
+            }
+
+            // Submit to Google Sheets
+            try {
+                const response = await fetch(CONFIG.GOOGLE_SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        timestamp: new Date().toISOString(),
+                        twitterHandle: twitterHandle,
+                        retweetLink: retweetLink,
+                        walletAddress: walletAddress
+                    })
+                });
+                
+                showSuccessModal();
+                document.getElementById('wallet-address').value = '';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showSuccessModal();
+            }
+        }
+
+        function showSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.add('active');
+            createConfetti();
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').classList.remove('active');
+        }
+
+        function createConfetti() {
+            const emojis = ['🐷', '🌻', '💕', '🐽', '✨', '🎉'];
+            const confettiCount = 40;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
+            }
+        }
+
+        document.getElementById('success-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
